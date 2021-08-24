@@ -1,0 +1,19 @@
+@using WeddingPlanner.Models
+@model Wedding
+
+
+<div class="d-flex justify-content-around mb-4">
+    <h1>@ViewBag.OneWed.WedderOne and @ViewBag.OneWed.WedderTwo's wedding</h1>
+    <a href="/dashboard" class="btn btn-lg btn-outline-primary" >Dashboard</a>
+<a href="/" class="btn btn-lg btn-outline-danger">Logout</a>
+</div>
+<div class="mb-4">
+    <h3>Date: @ViewBag.OneWed.Date</h3>
+</div>
+<div>
+    <h3>Guests:</h3>
+    @foreach (RSVP g in ViewBag.OneWed.Guests)
+    {
+        <h3>@g.User.FirstName @g.User.LastName</h3>
+    }
+</div>

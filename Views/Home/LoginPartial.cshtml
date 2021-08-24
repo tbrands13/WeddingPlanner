@@ -1,0 +1,19 @@
+@model LoginUser
+
+<div class="d-flex justify-content-around">
+    <h1>Login</h1>
+</div>
+<div>
+    <form class="form-group" asp-controller="Home" asp-action="LoggingIn" method="POST">
+        <label asp-for="LoginEmail">Email:</label>
+        <input asp-for="LoginEmail" class="form-control">
+        <span asp-validation-for="LoginEmail" class="alert-danger"></span>
+        <br>
+
+        <label asp-for="LoginPassword">Password:</label>
+        <input asp-for="LoginPassword" class="form-control">
+        <span asp-validation-for="LoginPassword" class="alert-danger"></span>
+        <br>
+        <input type="submit" class="btn btn-lg btn-outline-primary" value="Log In">
+    </form>
+</div>

@@ -1,0 +1,46 @@
+@using WeddingPlanner.Models
+@model Wedding
+
+
+<div class="d-flex justify-content-around mb-4">
+    <h1>Welcome to the Wedding Planner</h1>
+    <a href="/" class="btn btn-lg btn-outline-secondary">Logout</a>
+</div>
+<div class="mb-4">
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>Wedding</th>
+            <th>Date</th>
+            <th>Guest</th>
+            <th>Action</th>
+        </tr>
+        @foreach (Wedding w in ViewBag.AllWeddings)
+        {
+            <tr>
+                <td><a href="/wedding/@w.WeddingId">@w.WedderOne & @w.WedderTwo</a></td>
+                <td>@w.Date</td>
+                <td>@w.Guests.Count</td>
+                @{
+                    if(w.UserId == ViewBag.User)
+                    {
+                        <td><a href="/wedding/@w.WeddingId/delete" class="btn btn-sm btn-outline-danger">Remove</a></td>
+                    }
+                    else if(w.Guests.Any(rsvp => rsvp.UserId == @ViewBag.User))
+                    {
+                        {
+                            <td><a href="/rsvp/@w.WeddingId/remove" class="btn btn-sm btn-outline-dark">Un-RSVP</a></td>
+                        }
+                        
+                    }
+                    else
+                    {
+                        <td><a href="/wedding/@w.WeddingId/rsvp" class="btn btn-sm btn-outline-success">RSVP</a></td>
+                    }
+                }
+            </tr>
+        }
+    </table>
+</div>
+<div>
+    <a href="/planwedding" class="btn btn-lg btn-outline-warning">New Wedding</a>
+</div>
